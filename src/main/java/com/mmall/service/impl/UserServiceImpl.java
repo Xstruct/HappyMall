@@ -10,6 +10,7 @@ import com.mmall.util.MD5Util;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -64,7 +65,7 @@ public class UserServiceImpl implements IUserService {
                 }
             }
             if(Const.EMAIL.equals(type)){
-                int resultCount = userMapper.checkEmail(type);
+                int resultCount = userMapper.checkEmail(str);
                 if(resultCount > 0){
                     return ServerResponse.createByErorMessage("邮箱已注册");
                 }
